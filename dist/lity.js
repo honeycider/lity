@@ -1,4 +1,4 @@
-/*! Lity - v1.4.1 - 2015-08-18
+/*! Lity - v1.4.1 - 2015-08-26
 * http://sorgalla.com/lity/
 * Copyright (c) 2015 Jan Sorgalla; Licensed MIT */
 (function(window, factory) {
@@ -21,7 +21,7 @@
     var _instanceCount = 0;
 
     var _imageRegexp = /\.(png|jpg|jpeg|gif|tiff|bmp)(\?\S*)?$/i;
-    var _youtubeRegex = /(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})([&|\?]+list=([^&]+))?.*/i;
+    var _youtubeRegex = /(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})([&|\?]+([\s\S]+))?.*/i;
     var _vimeoRegex =  /(vimeo(pro)?.com)\/(?:[^\d]+)?(\d+)(?:.*)/;
     var _googlemapsRegex = /((maps|www)\.)?google\.([^\/\?]+)\/?((maps\/?)?\?)(.*)/i;
 
@@ -166,7 +166,7 @@
             url = protocol() + '//www.youtube' + (matches[2] || '') + '.com/embed/' + matches[4];
 
             if (matches[6]) {
-                url = appendQueryParams(url, 'list=' + matches[6]);
+                url = appendQueryParams(url, matches[6]);
             }
 
             url = appendQueryParams(url, 'autoplay=1');

@@ -18,7 +18,7 @@
     var _instanceCount = 0;
 
     var _imageRegexp = /\.(png|jpg|jpeg|gif|tiff|bmp)(\?\S*)?$/i;
-    var _youtubeRegex = /(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})([&|\?]+list=([^&]+))?.*/i;
+    var _youtubeRegex = /(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})([&|\?]+([\s\S]+))?.*/i;
     var _vimeoRegex =  /(vimeo(pro)?.com)\/(?:[^\d]+)?(\d+)(?:.*)/;
     var _googlemapsRegex = /((maps|www)\.)?google\.([^\/\?]+)\/?((maps\/?)?\?)(.*)/i;
 
@@ -163,7 +163,7 @@
             url = protocol() + '//www.youtube' + (matches[2] || '') + '.com/embed/' + matches[4];
 
             if (matches[6]) {
-                url = appendQueryParams(url, 'list=' + matches[6]);
+                url = appendQueryParams(url, matches[6]);
             }
 
             url = appendQueryParams(url, 'autoplay=1');
